@@ -9,7 +9,7 @@ private:
 	Vector2f m_Position;
 
 	//Rectangle object
-	RectangleShape m_shape;
+	RectangleShape m_Shape;
 
 	float m_speed = 1000.0f;
 
@@ -20,6 +20,8 @@ public:
 	Bat(float startX, float startY);
 
 	FloatRect getPosition();
+	RectangleShape getShape();
+
 
 	void moveLeft();
 	void moveRight();
