@@ -16,6 +16,7 @@ private:
 public:
 	Ball(float startX, float startY);
 
+	FloatRect getPosition();
 	RectangleShape getShape();
 
 	float getXVelocity();
