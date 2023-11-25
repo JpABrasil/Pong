@@ -46,7 +46,7 @@ void Bat::update(Time dt)	//Call this function one per frame, Having an update i
 	{
 		m_Position.x -= m_speed * dt.asSeconds();//dt = delta time
 	}
-	if (m_MovingLeft)
+	if (m_MovingRight)
 	{
 		m_Position.x += m_speed * dt.asSeconds();
 	}
