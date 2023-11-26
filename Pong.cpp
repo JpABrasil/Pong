@@ -19,7 +19,7 @@ int main()
 	Bat bat(1920 / 2, 1080 - 20);
 
 	//Add a Ball
-	Ball ball(1920 / 2, 0);
+	Ball ball(1920 / 2, 1080/2);
 
 	//Create a Text object called HUD
 	Text hud;
@@ -90,8 +90,48 @@ int main()
 		ss << "Score:" << score << " Lives:" << lives;
 		hud.setString(ss.str());
 
+		//Handle the ball hitting the bottom
+		if (ball.getPosition().top > window.getSize().y)
+		{
+			//reverse ball direction
+			ball.reboundBottom();//This function was defined in Ball.cpp
+
+			//Remove a life
+			lives--;
+
+			//Check for zero lifes
+			if (lives <= -1)
+			{
+				//Reset the score
+				score = 0;
+				//Reset the lives
+				lives = 3;
+			}
+
+		}
+
+		//Handle the ball hitting the top
+		if (ball.getPosition().top < 0)
+		{
+			ball.reboundBatorTop();
+
+			//Add a point to the players score
+			score++;
+		}
+
+		//Handle the ball hitting the sides
+		if (ball.getPosition().left < 0 || ball.getPosition().left + ball.getPosition().width > window.getSize().x)
+		{
+			ball.reboundSides();
+		}
 
 
+		//Handle the ball hitting the bate
+		if (ball.getPosition().intersects(bat.getPosition()))
+		{
+			//Hit detected so reverse the ball and score a point
+			ball.reboundBatorTop();
+		}
 
 		/*
 		* Draw the ball, the bat and the HUD
